@@ -1,7 +1,12 @@
 import { useState } from "react";
-import IconMap from "./components/icons";
 
-const choices = ["rock", "paper", "scissor"];
+import { Choices, ScoreBoard } from "./components/index";
+
+const choices = [
+  { label: "rock", icon: "✊" },
+  { label: "paper", icon: "🖐️" },
+  { label: "scissor", icon: "✌️" },
+];
 
 const App = () => {
   const [userChoice, setUserChoice] = useState("");
@@ -16,16 +21,16 @@ const App = () => {
       (user === "scissor" && computer === "paper")
     ) {
       setScore((prev) => ({ ...prev, user: prev.user + 1 }));
-      return "You Win";
+      return "😋You Win!!";
     } else {
       setScore((prev) => ({ ...prev, computer: prev.computer + 1 }));
-      return "You lose";
+      return "🥲You lose..";
     }
   };
 
   const playGame = (choice) => {
     const computer = choices[Math.floor(Math.random() * choices.length)];
-    setUserChoice(choice);
+    setUserChoice(choice +"d");
     setComputerChoice(computer);
     setResult(getResult(choice, computer));
   };
@@ -39,18 +44,25 @@ const App = () => {
   };
 
   return (
-    <section className=" w-full h-screen bg-gradient-to-r  from-slate-900 to-slate-700  ">
-      <div className=" mx-auto w-80 h-96 flex flex-col  items-center rounded-lg pb-10   bg-slate-300 ">
-        <ul className=" flex text-3xl pt-5 font-bold text-amber-500 gap-6 justify-between items-center px-10">
-          <p>Rock</p>
-          <p>Paper</p>
-          <p>Scissors</p>
-        </ul>
-        <div className="flex gap-10 justify-between p-10 text-blue-700  ">
-          <IconMap />
-        </div>
-        <button className="bg-amber-500 w-20 font-bold text-white px-4 justify-center py-2 rounded-lg ">
-          Play!
+    <section className="flex h-screen w-full items-center justify-center bg-gradient-to-r from-slate-900 to-slate-700">
+      <div className="relative flex h-4/6 w-full max-w-md flex-col items-center space-y-5 rounded-md bg-slate-400">
+        <h1 className="mt-5 bg-gradient-to-r from-indigo-700 via-blue-700 to-purple-700 bg-clip-text font-sans text-4xl font-extrabold text-transparent shadow-sm">
+          Rock Paper Scissor
+        </h1>
+        <ScoreBoard score={score} />
+
+        {/* choices */}
+        <Choices
+          playGame={playGame}
+          result={result}
+          userChoice={userChoice}
+          computerChoice={computerChoice}
+        />
+
+        {/* <PlayGame /> */}
+
+        <button className="mb-5 rounded-md bg-red-600 px-4 py-2 text-red-200 hover:bg-red-800">
+          Reset game!
         </button>
       </div>
     </section>
