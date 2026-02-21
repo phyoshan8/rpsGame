@@ -26,7 +26,9 @@ const App = () => {
 
   const playGame = (choice) => {
     const computer = choices[Math.floor(Math.random() * choices.length)];
+
     setUserChoice(choice);
+
     setComputerChoice(computer);
     setResult(getResult(choice, computer));
   };
