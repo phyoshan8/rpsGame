@@ -22,3 +22,8 @@ useEffect > wait for a condition to run
 
 useRef --> ref smth specific
 useContext--> distribute info to all components
+
+git new branch
+
+git checkout -b branchName
+git branch branchName

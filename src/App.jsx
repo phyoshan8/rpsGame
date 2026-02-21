@@ -30,7 +30,7 @@ const App = () => {
 
   const playGame = (choice) => {
     const computer = choices[Math.floor(Math.random() * choices.length)];
-    setUserChoice(choice +"d");
+    setUserChoice(choice + "d");
     setComputerChoice(computer);
     setResult(getResult(choice, computer));
   };
@@ -61,7 +61,10 @@ const App = () => {
 
         {/* <PlayGame /> */}
 
-        <button className="mb-5 rounded-md bg-red-600 px-4 py-2 text-red-200 hover:bg-red-800">
+        <button
+          onClick={resetGame}
+          className="mb-5 rounded-md bg-red-600 px-4 py-2 text-red-200 hover:bg-red-800"
+        >
           Reset game!
         </button>
       </div>
