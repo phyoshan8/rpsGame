@@ -5,9 +5,12 @@ const icons = [
 ];
 
 function Choices({ playGame, result, userChoice, computerChoice }) {
+  const getIcon = (choice) => {
+    return icons.find((i) => i.label === choice)?.icon ?? "";
+  };
   return (
     <div className="flex flex-col items-center">
-      <div className="mt-5 flex w-3/5 justify-center gap-2 rounded-md px-10">
+      <div className="flex w-3/5 justify-center gap-2 rounded-md px-10">
         {icons.map((i) => (
           <button
             onClick={() => playGame(i.label)}
@@ -17,8 +20,9 @@ function Choices({ playGame, result, userChoice, computerChoice }) {
           </button>
         ))}
       </div>
-      <p className="">You:{userChoice}</p>
-      <p className="">Computer:{computerChoice}</p>
+      <div></div>
+      <p className="">You:{getIcon(userChoice)}</p>
+      <p className="">Computer:{getIcon(computerChoice)}</p>
       <p className="w-full items-start text-2xl font-medium text-green-600">
         {result}
       </p>
